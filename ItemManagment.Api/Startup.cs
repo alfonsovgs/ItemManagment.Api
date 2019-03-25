@@ -32,6 +32,7 @@ namespace ItemManagment.Api
                 b.MigrationsAssembly("ItemManagment.Api")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddOData();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +48,11 @@ namespace ItemManagment.Api
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routebuilder =>
+            {
+                routebuilder.EnableDependencyInjection();
+                routebuilder.Expand().Select().Count().OrderBy();
+            });
         }
     }
 }
