@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ItemManagment.Api.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20190325004103_createItemsDb")]
+    [Migration("20190325021326_createItemsDb")]
     partial class createItemsDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

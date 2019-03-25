@@ -11,23 +11,32 @@ namespace ItemManagment.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemController : ControllerBase
+    public class ItemsController : ControllerBase
     {
         private readonly ItemDbContext _dbContext;
 
-        public ItemController(ItemDbContext dbContext)
+        public ItemsController(ItemDbContext dbContext)
         {
             _dbContext = dbContext;
+            DataBaseInitializer.Initialize(_dbContext);
         }
 
         [HttpGet]
         [EnableQuery()]
         public async Task<IActionResult> Get()
         {
-            var items = await _dbContext.Items.ToListAsync();
-            return Ok(items);
+            try
+            {
+                var items = await _dbContext.Items.ToListAsync();
+                return Ok(items);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
 
+        [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
             var items = await _dbContext.Items.Where(x => x.Name.Contains(name.ToLowerInvariant())).ToListAsync();

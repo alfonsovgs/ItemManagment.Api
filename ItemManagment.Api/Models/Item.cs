@@ -12,5 +12,10 @@ namespace ItemManagment.Api.Models
         public string Name { get; set; }
         public bool Active { get; set; }
         public ICollection<Clasification> Clasifications { get; set; }
+
+        public Item()
+        {
+            Clasifications = new List<Clasification>();
+        }
     }
 }
