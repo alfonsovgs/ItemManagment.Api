@@ -21,6 +21,7 @@ namespace ItemManagment.Api.Controllers
         }
 
         [HttpGet]
+        [EnableQuery()]
         public async Task<IActionResult> Get()
         {
             var items = await _dbContext.Items.ToListAsync();
