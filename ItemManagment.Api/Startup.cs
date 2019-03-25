@@ -51,7 +51,7 @@ namespace ItemManagment.Api
             app.UseMvc(routebuilder =>
             {
                 routebuilder.EnableDependencyInjection();
-                routebuilder.Expand().Select().Count().OrderBy();
+                routebuilder.Expand().Select().Count().OrderBy().Filter();
             });
         }
     }
